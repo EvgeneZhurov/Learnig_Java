@@ -1,6 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
-import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,56 +6,54 @@ import java.util.List;
 import java.io.FileReader;
 
 public class Lesson11 {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        try {
+   /*     try {
             System.out.println("Решение 1 задачи:");
             System.out.println(readValues("src/main/resources/Lesson1"));
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
-        }
+        } catch (NumberFormatException e) {
+            System.out.println("Текст1");
+        }catch (IOException e) {
+            System.out.println("Текст2");
+        }*/
 
         try {
             System.out.println("Решение 2 задачи:");
             System.out.println(sumOfValues("src/main/resources/Lesson1")); // Решение 2 задачи
         } catch (IOException e) {
             System.out.println("Cумма ывходит за пределы значнеий Double");
+        }catch (NumberFormatException e) {
+            System.out.println("Неверный формат данных");
         }
 
-        // 3 задача
-        souT("src/main/resources/Lesson1");
-
+ /*       // 3 задача
+        souT("src/main/resources/Lesson1");*/
     }
 
-    public static List<Double> readValues(String filename) throws IOException {
+    public static List<Double> readValues(String filename) throws NumberFormatException, IOException {
 
         List<Double> array = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filename));
         String str = "";
-        try {
-            while ((str = reader.readLine()) != null) {
-                array.add(Double.valueOf(str));
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден");
-        } catch (NumberFormatException e) {
-            System.out.println("Данные в файле содержат неверный формат данных");
-        } finally {
-            reader.close();
+
+        while ((str = reader.readLine()) != null) {
+            array.add(Double.valueOf(str));
         }
         return array;
     }
 
-    public static double sumOfValues(String filename) throws IOException {
+    public static double sumOfValues(String filename) throws IOException,NumberFormatException {
 
-        List<Double> array = new ArrayList<>(readValues(filename));
+        List<Double> array = readValues(filename);
         double sum = 0;
         for (int i = 0; i < array.size(); i++) {
             sum += array.get(i);
         }
-        if (sum == Double.MAX_VALUE || sum == Double.MIN_VALUE) {
+    /*    if (sum == Double.MAX_VALUE || sum == Double.MIN_VALUE) {
             throw new IOException(String.format("сумма ывходит за пределы значнеий Double"));
-        }
+        }*/
         return sum;
     }
 
