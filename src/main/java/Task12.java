@@ -21,17 +21,13 @@ public class Task12 {
                     }
                     for (int m = 0; m <= (nums.length - 1 - k); m++) {
                         if (nums[k] == nums[k + m + 1]) {
-                            nums[k] =0;
-                            nums[k + m + 1]= 0;
+                            nums[k] = 0;
+                            nums[k + m + 1] = 0;
                             break;
                         }
                     }
                 }
-
-
             }
-
         }
-
     }
 }

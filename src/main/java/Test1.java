@@ -15,11 +15,17 @@ public class Test1 {
         str.add(2);
         str.add(11);
 
-        str.set(2,10);
+        str.set(2, 10);
         System.out.println("Размер коллекции: " + str.size());
         System.out.println("Наполнение коллекции:" + " " + str);
         System.out.println("Первый элемент коллекции:" + " " + str.get(0));
-        System.out.println("Последний элемент коллекции:" + " " + str.get(str.size()-1));
+        System.out.println("Последний элемент коллекции:" + " " + str.get(str.size() - 1));
+
+        var a = "ssdlk";
+        final int NUM = 5;
+        System.out.println(NUM);
+        System.out.println(a);
+        long num = 2147483649L;
 
 
     }
