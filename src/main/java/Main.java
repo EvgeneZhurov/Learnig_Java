@@ -5,34 +5,39 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
 
-        Lesson17.File file1 = new Lesson17.File("File1", 5, Lesson17.File.Type.TXT);
-        Lesson17.File file2 = new Lesson17.File("File2", 4, Lesson17.File.Type.MKV);
-        Lesson17.File file3 = new Lesson17.File("File3", 3, Lesson17.File.Type.PDF);
-        Lesson17.File file4 = new Lesson17.File("File4", 2, Lesson17.File.Type.MP3);
+        Lesson17.File file1 = new Lesson17.File("File1", 5, Type.TXT);
+        Lesson17.File file2 = new Lesson17.File("File2", 4, Type.MKV);
+        Lesson17.File file3 = new Lesson17.File("File3", 3, Type.PDF);
+        Lesson17.File file4 = new Lesson17.File("File4", 2, Type.MP3);
 
         Lesson17.File[] array = new Lesson17.File[]{file1, file2, file3, file4};
 
         Scanner scanner = new Scanner(System.in);
         String index = scanner.nextLine();
 
-        foundFile(index, array);
+        displayInfo(foundFile(index, array));
     }
 
-    public static void foundFile(String index, Lesson17.File[] array) throws FileNotFoundException {
+    public static Lesson17.File foundFile(String index, Lesson17.File[] array) throws FileNotFoundException {
 
         boolean isFalse = false;
 
-        Lesson17.File fileComparison;
+        Lesson17.File fileComparison = array[0];
         for (int i = 0; i < array.length; i++) {
             fileComparison = array[i];
             if (Objects.equals(index, fileComparison.getName())) {
-                fileComparison.displayInfo();
                 isFalse = true;
+                break;
             }
         }
 
-        if (isFalse == false) {
+        if (!isFalse) {
             throw new FileNotFoundException();
         }
+        return fileComparison;
+    }
+
+    public static void displayInfo(Lesson17.File file) {
+        System.out.printf("File name: %s\tРазмер: %d\tТип %s\n", file.name, file.size, file.fileType);
     }
 }

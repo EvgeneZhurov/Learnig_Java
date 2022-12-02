@@ -4,11 +4,7 @@ public class Lesson17 {
 
         public String name;
         public int size;
-        public Type fileType ;
-
-        void displayInfo() {
-            System.out.printf("File name: %s\tРазмер: %d\tТип %s\n", name, size, fileType);
-        }
+        public Type fileType;
 
         public File(String name, int size, Type type) {
 
@@ -20,12 +16,12 @@ public class Lesson17 {
         public String getName() {
             return name;
         }
-
-        enum Type {
-            TXT,
-            MKV,
-            PDF,
-            MP3
-        }
     }
+}
+
+enum Type {
+    TXT,
+    MKV,
+    PDF,
+    MP3
 }
