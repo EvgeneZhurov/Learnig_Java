@@ -32,6 +32,7 @@ public final class Point {
     public static void main(String[] args) {
         Point p = new Point(3, 4).translate(1, 1).scale(2);
         System.out.println(p.getX() + " " + (p.getY()));
+        System.out.println("Hello");
         System.out.println(p.getX() + " " + (p.getY()));
         System.out.println(p.getX() + " " + (p.getY()));
         System.out.println(p.getX() + " " + (p.getY()));
