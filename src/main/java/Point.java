@@ -1,24 +1,27 @@
 public final class Point {
 
-    private final double x;
-    private final double y;
+    private double x;
+    private double y;
 
-    public Point() {
+     Point() {
         x = 0;
         y = 0;
     }
 
-    public Point(double x, double y) {
+     Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public Point translate(double x, double y) {
-        return new Point(this.x + x, this.y + y);
+    public void translate(double translate1, double translate2) {
+        this.x = x + translate1;
+        this.y = y + translate2;
+
     }
 
-    public Point scale(double scale) {
-        return new Point(x * scale, y * scale);
+    public void scale(double scale) {
+        this.x = x * scale;
+        this.y = y * scale;
     }
 
     public double getX() {
@@ -29,13 +32,19 @@ public final class Point {
         return y;
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     public static void main(String[] args) {
-        Point p = new Point(3, 4).translate(1, 1).scale(2);
-        System.out.println(p.getX() + " " + (p.getY()));
-        System.out.println("Hello");
-        System.out.println(p.getX() + " " + (p.getY()));
-        System.out.println(p.getX() + " " + (p.getY()));
-        System.out.println(p.getX() + " " + (p.getY()));
+        Point p = new Point(1,1);
+        p.scale(2);
+        p.translate(2.0, 2.0);
+        System.out.println((p.getX()) + (p.getY()));
     }
 }
 
