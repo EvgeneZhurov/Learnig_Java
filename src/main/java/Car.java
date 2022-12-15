@@ -55,6 +55,4 @@ public final class Car {
     public int getMileage() {
         return this.mileage;
     }
-
-
 }
