@@ -1,6 +1,6 @@
 public final class Car {
 
-    private double amountOfGasolineInTank;       //Количество бензина в баке
+    private double amountOfGasolineInTank;    //Количество бензина в баке
     private int coordinateX;                  //Координана X
     private int mileage;                      //Пробег
     private final int fuelConsumption;        //Расход топлива
