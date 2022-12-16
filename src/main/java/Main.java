@@ -14,6 +14,5 @@ public class Main {
         System.out.println("Пробег: " + toyotaLC200.getMileage() + " км.");
         toyotaLC200.moveXMiles(-6000);
         toyotaLC200.carInfo();
-
     }
 }
