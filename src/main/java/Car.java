@@ -1,29 +1,31 @@
 public final class Car {
 
-    private int amountOfGasolineInTank;       //Количество бензина в баке
+    private double amountOfGasolineInTank;       //Количество бензина в баке
     private int coordinateX;                  //Координана X
     private int mileage;                      //Пробег
-    private final int fuelConsumption = 10;   //Расход топлива
-    private final int fullTank = 100;         //Емкость бака
+    private final int fuelConsumption;        //Расход топлива
+    private final int fullTank;               //Емкость бака
 
-    public Car() {
+    public Car(int fuelConsumption) {
 
         this.amountOfGasolineInTank = 10;
         this.coordinateX = 0;
         this.mileage = 0;
+        this.fuelConsumption = fuelConsumption;
+        this.fullTank = 100;
     }
 
     public void carInfo() {
-        System.out.printf("Количество бензина в баке (литры): %d, Пробег (км): %d,Координана X: %d \n", amountOfGasolineInTank, mileage, coordinateX);
+        System.out.printf("Количество бензина в баке (литры): %.0f, Пробег (км): %d,Координана X: %d \n", amountOfGasolineInTank, mileage, coordinateX);
     }
 
     //Метод для передвижения на задланное количество километров
-    public void setCoordinateX(int x) {
+    public void moveXMiles(int x) {
 
-        if (x / fuelConsumption > amountOfGasolineInTank) {
+        if (Math.abs(x) / fuelConsumption > (int) amountOfGasolineInTank) {
             System.out.println("Требуется заправка, автомобиль не может проехать данное растояние.");
         } else {
-            this.amountOfGasolineInTank -= Math.abs(x) / fuelConsumption;
+            this.amountOfGasolineInTank -= (double) Math.abs(x) / fuelConsumption;
             if (this.amountOfGasolineInTank < 5) {
                 System.out.println("Требуется заправка, бак почти пуст");
             }
@@ -48,7 +50,7 @@ public final class Car {
     }
 
     //Литров топлива в баке
-    public int getAmountOfGasolineInTank() {
+    public double getAmountOfGasolineInTank() {
         return this.amountOfGasolineInTank;
     }
 
