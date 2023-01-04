@@ -13,7 +13,7 @@ public class LongestNiceSubarray {
         for (int i = 0; i < nums.length - 1; i++) {
             result = Math.max(result, lengthOfOneElementFromArray(nums, i));
         }
-        System.out.println(1090 & 117883195);
+
         return result;
     }
 
