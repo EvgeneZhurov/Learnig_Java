@@ -12,21 +12,31 @@ public class MakeTwoArraysEqualByReversingSubarrays {
 
     public static boolean canBeEqual(int[] target, int[] arr) {
 
-        Map<Integer, Integer> compare1 = new HashMap<>();
-        Map<Integer, Integer> compare2 = new HashMap<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (compare1.get(arr[i]) != null) {
-                compare1.put(arr[i], compare1.get(arr[i]) + 1);
+        Map<Integer, Integer> compare = new HashMap<>();
+
+        for (int value : arr) {
+            if (compare.get(value) != null) {
+                compare.put(value, compare.get(value) + 1);
             } else {
-                compare1.put(arr[i], 1);
-            }
-            if (compare2.get(target[i]) != null) {
-                compare2.put(target[i], compare2.get(target[i]) + 1);
-            } else {
-                compare2.put(target[i], 1);
+                compare.put(value, 1);
             }
         }
 
-        return compare1.equals(compare2);
+        for (int k : target) {
+            if (compare.get(k) != null) {
+                compare.put(k, compare.get(k) - 1);
+            } else {
+                System.out.println(compare);
+                return false;
+            }
+        }
+        System.out.println(compare);
+        for(
+    int j :target) {
+        if (compare.get(j) != 0) {
+            return false;
+        }
     }
+        return true;
+}
 }

@@ -16,11 +16,12 @@ public class Shift2DGrid {
         List<Integer> array = new ArrayList<>();
         if (k % (grid[0].length * grid.length) == 0) {
 
-            for (int i = 0; i < grid.length; i++) {
+            for (int[] ints : grid) {
                 for (int j = 0; j < grid[0].length; j++) {
-                    array.add(grid[j][i]);
+                    array.add(ints[j]);
                 }
-                result.add(array);
+                result.add(List.copyOf(array));
+
                 array.clear();
             }
 

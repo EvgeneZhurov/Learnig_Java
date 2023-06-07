@@ -17,4 +17,12 @@ public final class Point {
     public double getY() {
         return y;
     }
+
+    public Point setX(double x) {
+        return new Point(x, y);
+    }
+
+    public Point setY(double y) {
+        return new Point(x, y);
+    }
 }

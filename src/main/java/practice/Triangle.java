@@ -1,6 +1,6 @@
 package practice;
 
-public class Triangle implements AreaMesurable {
+public final class Triangle implements AreaMesurable {
 
     private final Point point1;
     private final Point point2;
@@ -25,7 +25,7 @@ public class Triangle implements AreaMesurable {
     }
 
     @Override
-    public double area() {
+    public double calcArea() {
 
         // Длины отверзков треугольника равны:
         double a = Math.sqrt(Math.pow(point1.getX() - point2.getX(), 2) + Math.pow(point1.getY() - point2.getY(), 2));

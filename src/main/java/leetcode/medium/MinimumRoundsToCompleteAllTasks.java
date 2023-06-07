@@ -21,7 +21,6 @@ public class MinimumRoundsToCompleteAllTasks {
             }
         }
 
-
         int result = 0;
         for (Integer integer : list) {
             if (mapa.get(integer) == 1) {
@@ -33,7 +32,6 @@ public class MinimumRoundsToCompleteAllTasks {
                 result += (mapa.get(integer) / 3) + 1;
             }
         }
-
         return result;
     }
 }
