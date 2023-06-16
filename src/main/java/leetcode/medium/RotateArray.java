@@ -1,28 +1,26 @@
-package Leetcode.Medium;
+package leetcode.medium;
 
 import java.util.Arrays;
 
 public class RotateArray {
     public static void main(String[] args) {
         int[] array = new int[]{1, 2, 3, 4, 5, 6, 7};
-        System.out.println(Arrays.toString(rotate(array, 3)));
+        System.out.println(Arrays.toString(rotate(array, 5)));
     }
 
     public static int[] rotate(int[] nums, int k) {
 
-        if (nums.length % k != 0) {
+        int[] result = new int[nums.length];
+
+        if (k % nums.length != 0) {
             k = k % nums.length;
-            int num2 = nums[0];
-            int num3;
             for (int i = 0; i < nums.length; i++) {
-                System.out.println((i + k + 1) % nums.length);
-                nums[i] = nums[(i + k + 1) % nums.length];
-                num3 = nums[(i + k) % nums.length];
-                nums[(i + k) % nums.length] = num2;
-                num2 = nums[(i + 1) % nums.length];
+                result[(i + k) % nums.length] = nums[i];
+            }
+            for (int i = 0; i < nums.length; i++) {
+                nums[i] = result[i];
             }
         }
-
-        return nums;
+        return result;
     }
 }
