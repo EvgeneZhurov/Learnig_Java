@@ -1,7 +1,5 @@
 package leetcode.medium;
 
-import java.util.Arrays;
-
 public class UniquePaths {
     public static void main(String[] args) {
 
