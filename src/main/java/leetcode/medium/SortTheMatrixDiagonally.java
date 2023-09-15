@@ -1,6 +1,6 @@
 //https://leetcode.com/problems/sort-the-matrix-diagonally/
 
-package Leetcode.Medium;
+package leetcode.medium;
 
 import java.util.ArrayList;
 import java.util.List;

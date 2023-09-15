@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/partitioning-into-minimum-number-of-deci-binary-numbers/
 //
-package Leetcode.Medium;
+package leetcode.medium;
 
 public class PartitioningIntoMinimumNumberOfDeciBinaryNumbers {
     public static void main(String[] args) {

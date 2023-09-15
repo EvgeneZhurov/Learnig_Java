@@ -12,13 +12,13 @@ public class RotateArray {
 
         int[] result = new int[nums.length];
 
-        if (k % nums.length != 0) {
-            k = k % nums.length;
-            for (int i = 0; i < nums.length; i++) {
-                result[(i + k) % nums.length] = nums[i];
-            }
-            for (int i = 0; i < nums.length; i++) {
-                nums[i] = result[i];
+        if (k<= nums.length/2) {
+            if (k % nums.length != 0) {
+                k = k % nums.length;
+                for (int i = 0; i < nums.length; i++) {
+                    result[(i + k) % nums.length] = nums[i];
+                }
+                System.arraycopy(result, 0, nums, 0, nums.length);
             }
         }
         return result;

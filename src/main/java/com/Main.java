@@ -30,6 +30,9 @@ public class Main {
         checkDog(Barsic);
         checkCat(Sharic);
         checkCat(Barsic);
+
+        System.out.println(Sharic.getClass());
+        System.out.println(Barsic.getClass());
     }
 
     public static void checkDog(Animal animal) {

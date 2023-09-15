@@ -1,7 +1,7 @@
 //https://leetcode.com/problems/max-increase-to-keep-city-skyline/
 // 09.11.2022
 
-package leetcode.Medium;
+package leetcode.medium;
 
 import java.util.Arrays;
 
