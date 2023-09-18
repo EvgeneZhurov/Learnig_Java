@@ -31,9 +31,13 @@ public class Blurring {
 
         for (int y = indent; y < yUpperLimit; ++y) {
             for (int x = indent; x < xUpperLimit; ++x) {
-                for (int i = 0; i < convolutionMatrix.length; i++) {
-                    for (int j = 0; j < convolutionMatrix.length; j++) {
-                        inputRaster.getPixel(x + j - indent, y + i - indent, inputPixel);
+                int row = y - indent;
+
+                for (int i = 0; i < convolutionMatrix.length; i++, row++) {
+                    int column = x - indent;
+
+                    for (int j = 0; j < convolutionMatrix.length; j++, column++) {
+                        inputRaster.getPixel(column, row, inputPixel);
 
                         for (int k = 0; k < COLORS_COUNT_IN_RGB; k++) {
                             rgb[k] += convolutionMatrix[i][j] * inputPixel[k];
@@ -61,7 +65,7 @@ public class Blurring {
         ImageIO.write(outputImage, "png", new File("out.png"));
     }
 
-    private static double[][] getBlurMatrix(int matrixRank) {
+    public static double[][] getBlurMatrix(int matrixRank) {
         double coefficient = 1.0 / Math.pow(matrixRank, 2);
 
         double[][] blurMatrix = new double[matrixRank][matrixRank];
