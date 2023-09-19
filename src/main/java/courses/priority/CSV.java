@@ -11,41 +11,33 @@ public class CSV {
             writer.println("<table>");
 
             while (scanner.hasNextLine()) {
+                writer.println("    <tr>");
+
                 StringBuilder sb = new StringBuilder();
                 sb.append(scanner.nextLine());
 
-                writer.println("    <tr>");
+                while (sb.lastIndexOf("\"") > sb.lastIndexOf(",")) {
+                    sb.append(scanner.nextLine());
+                }
 
                 while (true) {
                     if (sb.indexOf(",") == -1) {
-                        writer.println(sb);
-
-                        break;
-                    }
-
-                    writer.print("        <td>");
-
-                    writer.println(sb.substring(0, sb.indexOf(",")) + "</td>");
-                    writer.print("        <td>");
-
-                    sb.delete(0, sb.indexOf(",") + 1);
-
-
-              /*  if (sb.indexOf("\"") == 0) {
-                    while (true) {
-                        if (sb.lastIndexOf("\"") == sb.indexOf("\"")) {
-                            sb.append("<br/>");
-                            sb.append(scanner.nextLine());
+                        if (sb.indexOf("\"") == 0 && sb.indexOf("\"") == sb.length() - 1) {
+                            sb.delete(0, 1);
+                            sb.delete(sb.indexOf("\"") - 1, sb.lastIndexOf("\""));
                         }
 
+                        writer.println("        <td>" + sb + "</td>");
                         break;
                     }
 
-                    sb.delete(0, 1);
-                    sb.delete(sb.indexOf("\","), sb.indexOf("\",") + 1);
-                }*/
+                    if (sb.indexOf("\"") == 0 && sb.indexOf("\"") < sb.indexOf(",")) {
+                        sb.delete(0, 1);
+                        sb.delete(sb.indexOf("\""), sb.indexOf("\",") + 1);
+                    }
 
-                    writer.println(sb);
+                    writer.println("        <td>" + sb.substring(0, sb.indexOf(",")) + "</td>");
+                    sb.delete(0, sb.indexOf(",") + 1);
                 }
 
                 writer.println("    </tr>");
@@ -53,13 +45,15 @@ public class CSV {
 
             writer.print("</table>");
         }
-
-        //TODO Написать конвертер из CSV в HTML
-
-        //TODO сделать проверку на спец сиволы
-
-        //TODO перечитать  внимательно задачу
-
-
     }
 }
+
+
+//TODO Написать конвертер из CSV в HTML
+
+//TODO сделать проверку на спец символы
+
+//TODO перечитать внимательно задачу
+
+
+

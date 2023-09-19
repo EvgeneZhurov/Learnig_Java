@@ -6,7 +6,8 @@ public class MatrixDeterminant {
                 {1, 3, 2, 3},
                 {5, 6, 7, -5},
                 {9, 10, 11, 11},
-                {1, 2, 3, 7}};
+                {1, 2, 3, 7}
+        };
 
         if (array.length == 0) {
             System.out.println("У пустой матрицы нет определителя.");
