@@ -10,9 +10,9 @@ public class MatrixDeterminant {
         };
 
         if (!isSquareMatrix(array)) {
-            System.out.println("Матрица не квадратная. Определитель считается только у квадратных матриц.");
+            System.out.println("Матрица неквадратная. Определитель считается только у квадратных матриц.");
         } else if (array.length == 0) {
-            System.out.println("У пустой матрицы нет определителя");
+            System.out.println("У пустой матрицы нет определителя.");
         } else {
             System.out.println(getDeterminant(array));
         }
