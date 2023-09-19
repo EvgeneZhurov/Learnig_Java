@@ -6,15 +6,14 @@ public class MatrixDeterminant {
                 {1, 3, 2, 3},
                 {5, 6, 7, -5},
                 {9, 10, 11, 11},
-                {1, 2, 3, 7}
-        };
+                {1, 2, 3, 7}};
 
-        if (!isSquareMatrix(array)) {
-            System.out.println("Матрица неквадратная. Определитель считается только у квадратных матриц.");
-        } else if (array.length == 0) {
+        if (array.length == 0) {
             System.out.println("У пустой матрицы нет определителя.");
+        } else if (!isSquareMatrix(array)) {
+            System.out.println("Матрица неквадратная. Определитель считается только у квадратных матриц.");
         } else {
-            System.out.println(getDeterminant(array));
+            System.out.println("Определитель матрицы = " + getDeterminant(array));
         }
     }
 
@@ -23,6 +22,10 @@ public class MatrixDeterminant {
             return inputArray[0][0];
         }
 
+        return getMatrixDeterminant(inputArray);
+    }
+
+    private static double getMatrixDeterminant(double[][] inputArray) {
         if (inputArray.length == 2) {
             return inputArray[0][0] * inputArray[1][1] - inputArray[1][0] * inputArray[0][1];
         }
@@ -43,19 +46,15 @@ public class MatrixDeterminant {
                 }
             }
 
-            determinant += Math.pow(-1, i) * inputArray[0][i] * getDeterminant(outputArray);
+            determinant += Math.pow(-1, i) * inputArray[0][i] * getMatrixDeterminant(outputArray);
         }
 
         return determinant;
     }
 
     public static boolean isSquareMatrix(double[][] array) {
-        if (array.length != array[0].length) {
-            return false;
-        }
-
-        for (int i = 0; i < array[0].length; i++) {
-            if (array[i].length != array.length) {
+        for (double[] column : array) {
+            if (column.length != array.length) {
                 return false;
             }
         }
