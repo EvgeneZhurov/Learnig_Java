@@ -11,49 +11,120 @@ public class CSV {
             writer.println("<table>");
 
             while (scanner.hasNextLine()) {
-                writer.println("    <tr>");
-
                 StringBuilder sb = new StringBuilder();
-                sb.append(scanner.nextLine());
+                StringBuilder stringBuilder = new StringBuilder();
 
-                while (sb.lastIndexOf("\"") > sb.lastIndexOf(",")) {
-                    sb.append(scanner.nextLine());
+                replaceSpecialCharacters(stringBuilder.append(scanner.nextLine()));
+                sb.append(stringBuilder);
+
+                stringBuilder.delete(0, stringBuilder.length());
+
+                while (!isAllString(sb)) {
+                    sb.append("<br/>");
+
+                    replaceSpecialCharacters(stringBuilder.append(scanner.nextLine()));
+                    sb.append(stringBuilder);
                 }
 
-                while (true) {
-                    if (sb.indexOf(",") == -1) {
-                        if (sb.indexOf("\"") == 0 && sb.indexOf("\"") == sb.length() - 1) {
-                            sb.delete(0, 1);
-                            sb.delete(sb.indexOf("\"") - 1, sb.lastIndexOf("\""));
-                        }
-
-                        writer.println("        <td>" + sb + "</td>");
-                        break;
-                    }
-
-                    if (sb.indexOf("\"") == 0 && sb.indexOf("\"") < sb.indexOf(",")) {
-                        sb.delete(0, 1);
-                        sb.delete(sb.indexOf("\""), sb.indexOf("\",") + 1);
-                    }
-
-                    writer.println("        <td>" + sb.substring(0, sb.indexOf(",")) + "</td>");
-                    sb.delete(0, sb.indexOf(",") + 1);
-                }
-
-                writer.println("    </tr>");
+                formatRow(sb, writer);
             }
 
             writer.print("</table>");
         }
     }
+
+    public static void formatRow(StringBuilder sb, PrintWriter writer) {
+        writer.println("    <tr>");
+
+        while (sb.length() > 0) {
+            int subStringLength = getLength(sb);
+
+            StringBuilder stringBuilder = new StringBuilder(sb.substring(0, subStringLength));
+            sb.delete(0, subStringLength);
+
+            if (subStringLength > 0 && stringBuilder.charAt(0) == '"') {
+                deleteCharacters(stringBuilder);
+            }
+
+            writer.println("        <td>" + stringBuilder + "</td>");
+
+            if (sb.length() == 1 && sb.charAt(0) == ',') {
+                writer.println("        <td></td>");
+                sb.delete(0, 1);
+                break;
+            }
+
+            if (sb.length() > 0) {
+                sb.delete(0, 1);
+            }
+        }
+
+        writer.println("    </tr>");
+    }
+
+    public static int getLength(StringBuilder sb) {
+        if (sb.charAt(0) != '"') {
+            int length = sb.indexOf(",");
+            return length == -1 ? sb.length() : length;
+        }
+
+        int counter = 0;
+
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == '"') {
+                counter += 1;
+                continue;
+            }
+
+            if (counter % 2 == 0 && sb.charAt(i) == ',') {
+                return i;
+            }
+        }
+
+        return sb.length();
+    }
+
+    public static boolean isAllString(StringBuilder sb) {
+        int counter = 0;
+
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == '"') {
+                counter += 1;
+            }
+        }
+
+        return counter % 2 == 0;
+    }
+
+    public static void deleteCharacters(StringBuilder sb) {
+        sb.delete(0, 1);
+        sb.delete(sb.length() - 1, sb.length());
+
+        for (int i = 0; i < sb.length(); i++) {
+            if (sb.charAt(i) == '"') {
+                sb.delete(i, i + 1);
+            }
+        }
+    }
+
+    public static void replaceSpecialCharacters(StringBuilder stringBuilder) {
+        for (int i = 0; i < stringBuilder.length(); i++) {
+            char temp = stringBuilder.charAt(i);
+
+            if (temp == '<') {
+                stringBuilder.delete(i, i + 1);
+                stringBuilder.insert(i, "&lt;");
+            }
+
+            if (temp == '>') {
+                stringBuilder.delete(i, i + 1);
+                stringBuilder.insert(i, "&gt;");
+            }
+
+            if (temp == '&') {
+                stringBuilder.delete(i, i + 1);
+                stringBuilder.insert(i, "&amp;");
+            }
+        }
+    }
 }
-
-
-//TODO Написать конвертер из CSV в HTML
-
-//TODO сделать проверку на спец символы
-
-//TODO перечитать внимательно задачу
-
-
-

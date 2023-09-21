@@ -31,25 +31,23 @@ public class Blurring {
 
         for (int y = indent; y < yUpperLimit; ++y) {
             for (int x = indent; x < xUpperLimit; ++x) {
-                int row = y - indent;
+                for (int i = 0, j = y - indent; i < convolutionMatrix.length; i++, j++) {
+                    for (int k = 0, l = x - indent; k < convolutionMatrix.length; k++, l++) {
+                        inputRaster.getPixel(l, j, inputPixel);
 
-                for (int i = 0; i < convolutionMatrix.length; i++, row++) {
-                    int column = x - indent;
-
-                    for (int j = 0; j < convolutionMatrix.length; j++, column++) {
-                        inputRaster.getPixel(column, row, inputPixel);
-
-                        for (int k = 0; k < COLORS_COUNT_IN_RGB; k++) {
-                            rgb[k] += convolutionMatrix[i][j] * inputPixel[k];
+                        for (int m = 0; m < COLORS_COUNT_IN_RGB; m++) {
+                            rgb[m] += convolutionMatrix[i][k] * inputPixel[m];
                         }
                     }
                 }
 
                 for (int i = 0; i < COLORS_COUNT_IN_RGB; i++) {
-                    if (rgb[i] < 0) {
+                    if (rgb[i] <= 0) {
                         rgb[i] = 0;
                         continue;
-                    } else if (rgb[i] > 255) {
+                    }
+
+                    if (rgb[i] >= 255) {
                         rgb[i] = 255;
                         continue;
                     }
