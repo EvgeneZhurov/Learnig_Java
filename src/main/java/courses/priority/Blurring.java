@@ -43,12 +43,12 @@ public class Blurring {
 
                 for (int i = 0; i < COLORS_COUNT_IN_RGB; i++) {
                     if (rgb[i] <= 0) {
-                        rgb[i] = 0;
+                        outputPixel[i] = 0;
                         continue;
                     }
 
                     if (rgb[i] >= 255) {
-                        rgb[i] = 255;
+                        outputPixel[i] = 255;
                         continue;
                     }
 
