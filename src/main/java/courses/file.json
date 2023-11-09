@@ -1,0 +1,73 @@
+{
+  "countries": [
+    {
+      "nameRus": "Российская Федерация",
+      "nameEng": "Russia",
+      "countryCode": "RU",
+      "currencyCode": "RUB",
+      "cities": [
+        {
+          "nameRus": "Москва",
+          "nameEng": "Moscow",
+          "population": 12000000
+        },
+        {
+          "nameRus": "Чекалин",
+          "nameEng": "Chekalin",
+          "population": 1000
+        },
+        {
+          "nameRus": "Новосибирск",
+          "nameEng": "Novosibirsk",
+          "population": 2000000
+        }
+      ]
+    },
+    {
+      "nameRus": "Германия",
+      "nameEng": "Germany",
+      "countryCode": "DE",
+      "currencyCode": "EUR",
+      "cities": [
+        {
+          "nameRus": "Берлин",
+          "nameEng": "Berlin",
+          "population": 3500000
+        },
+        {
+          "nameRus": "Мюнхен",
+          "nameEng": "Munich",
+          "population": 1500000
+        },
+        {
+          "nameRus": "Гамбург",
+          "nameEng": "Hamburg",
+          "population": 1900000
+        }
+      ]
+    },
+    {
+      "nameRus": "Китай",
+      "nameEng": "China",
+      "countryCode": "CN",
+      "currencyCode": "CNY",
+      "cities": [
+        {
+          "nameRus": "Гонконг",
+          "nameEng": "Hong Kong",
+          "population": 7333000
+        },
+        {
+          "nameRus": "Пекин",
+          "nameEng": "Beijing",
+          "population": 22000000
+        },
+        {
+          "nameRus": "Шанхай",
+          "nameEng": "Shanghai",
+          "population": 24000000
+        }
+      ]
+    }
+  ]
+}

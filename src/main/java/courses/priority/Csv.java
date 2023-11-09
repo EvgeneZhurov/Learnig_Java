@@ -5,9 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class CSV {
+public class Csv {
     public static void main(String[] args) throws FileNotFoundException {
-        try (Scanner scanner = new Scanner(new FileInputStream("input.csv")); PrintWriter writer = new PrintWriter("output.html")) {
+        try (Scanner scanner = new Scanner(new FileInputStream("input.csv"));
+             PrintWriter writer = new PrintWriter("output.html")) {
+
+            writer.println("<!DOCTYPE html>");
+            writer.println("    <html lang = \"ru\" >");
+            writer.println("<head>");
+            writer.println("    <meta charset = \"UTF-8\" >");
+            writer.println("</head>");
+            writer.println("<body>");
             writer.println("<table>");
 
             while (scanner.hasNextLine()) {
@@ -29,7 +37,10 @@ public class CSV {
                 formatRow(sb, writer);
             }
 
-            writer.print("</table>");
+            writer.println(
+                    "</table>");
+            writer.println("</body>");
+            writer.println("</html>");
         }
     }
 
@@ -85,15 +96,15 @@ public class CSV {
     }
 
     public static boolean isAllString(StringBuilder sb) {
-        int counter = 0;
+        int quotationMarksQuantity = 0;
 
         for (int i = 0; i < sb.length(); i++) {
             if (sb.charAt(i) == '"') {
-                counter += 1;
+                quotationMarksQuantity++;
             }
         }
 
-        return counter % 2 == 0;
+        return quotationMarksQuantity % 2 == 0;
     }
 
     public static void deleteCharacters(StringBuilder sb) {
@@ -109,19 +120,19 @@ public class CSV {
 
     public static void replaceSpecialCharacters(StringBuilder stringBuilder) {
         for (int i = 0; i < stringBuilder.length(); i++) {
-            char temp = stringBuilder.charAt(i);
+            char symbol = stringBuilder.charAt(i);
 
-            if (temp == '<') {
+            if (symbol == '<') {
                 stringBuilder.delete(i, i + 1);
                 stringBuilder.insert(i, "&lt;");
             }
 
-            if (temp == '>') {
+            if (symbol == '>') {
                 stringBuilder.delete(i, i + 1);
                 stringBuilder.insert(i, "&gt;");
             }
 
-            if (temp == '&') {
+            if (symbol == '&') {
                 stringBuilder.delete(i, i + 1);
                 stringBuilder.insert(i, "&amp;");
             }
