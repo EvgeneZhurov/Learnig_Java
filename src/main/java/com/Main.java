@@ -33,6 +33,8 @@ public class Main {
 
         System.out.println(Sharic.getClass());
         System.out.println(Barsic.getClass());
+
+        //pr request comment for you
     }
 
     public static void checkDog(Animal animal) {
